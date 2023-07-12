@@ -17,6 +17,8 @@ $contentType = $_POST['content_type'];
 $channel = $_POST['channel'];
 $segmentName = $_POST['segment_name'];
 
+
+
 // Database connection settings
 $host = 'sql7.freesqldatabase.com';
 $dbName = 'sql7632170';
@@ -49,12 +51,15 @@ try {
   $stmt->execute();
   
   // Provide feedback to the user
-  echo "Form data submitted successfully!";
+header("Location: /?status=success");
+die();
 } catch(PDOException $e) {
   // Handle any errors
-  echo "Error: " . $e->getMessage();
+header("Location: /?status=fail");
+die();
 }
 
 // Close the database connection
 $conn = null;
 ?>
+

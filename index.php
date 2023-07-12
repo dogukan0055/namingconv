@@ -1,9 +1,20 @@
 <?php
-ini_set('display_errors', 1);
+if(isset($_GET["status"])){
 
-ini_set('display_startup_errors', 1);
+    if($_GET["status"] == "success"){
 
-error_reporting(E_ALL);
+        echo '<div style="background-color: green; color:white; width: 100%; height:100px;">Başarıyla kaydedildi.</div>';
+
+    }else{
+
+        echo '<div style="background-color: red; color:white; width: 100%; height:100px;">Kaydedilemedi</div>';
+
+
+
+
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,13 +23,9 @@ error_reporting(E_ALL);
 <head>
     <title>Naming Convention - MDP for Pyksys</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/javascript.js"></script>
 
 </head>
 
@@ -164,7 +171,7 @@ error_reporting(E_ALL);
                         onfocus="handleSegmentNameInput()">
                 </div>
 
-                <button class="create-button" onclick="createOutput()">Create</button>
+                <button type="button" class="create-button" onclick="createOutput()">Create</button>
                 <input type="submit" value="Submit" class="submit-button">
             </div>
             <div class="output-section">
