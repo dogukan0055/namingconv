@@ -1,11 +1,10 @@
 <?php
-// Shows any error
+
 ini_set('display_errors', 1);
 
 ini_set('display_startup_errors', 1);
 
 error_reporting(E_ALL);
-
 // Retrieve form data
 $businessUnit = $_POST['business_unit'];
 $franchise = $_POST['franchise'];
@@ -17,8 +16,8 @@ $deliveryType = $_POST['delivery_type'];
 $contentType = $_POST['content_type'];
 $channel = $_POST['channel'];
 $segmentName = $_POST['segment_name'];
-$activityName = $_POST['activity_name'];
-$journeyName = $_POST['journey_name'];
+
+
 
 // Database connection settings
 $host = 'sql7.freesqldatabase.com';
@@ -33,8 +32,8 @@ try {
   // Set the error mode to exception for error handling
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
-  // SQL statement
-  $stmt = $conn->prepare("INSERT INTO NamingConvention (business_unit, franchise, com_med, brand, campaign_name, campaign_type, delivery_type, content_type, channel, segment_name, activity_name, journey_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  // Prepare the SQL statement
+  $stmt = $conn->prepare("INSERT INTO NamingConvention (business_unit, franchise, com_med, brand, campaign_name, campaign_type, delivery_type, content_type, channel, segment_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   
   // Bind the form field values to the statement
   $stmt->bindParam(1, $businessUnit);
@@ -47,13 +46,11 @@ try {
   $stmt->bindParam(8, $contentType);
   $stmt->bindParam(9, $channel);
   $stmt->bindParam(10, $segmentName);
-  $stmt->bindParam(11, $activityName);
-  $stmt->bindParam(12, $journeyName);
   
   // Execute the statement
   $stmt->execute();
   
-  // Feedback to the user
+  // Provide feedback to the user
 header("Location: /?status=success");
 die();
 } catch(PDOException $e) {
